@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { getSupabase } from '@/lib/supabase';
 import { NextRequest, NextResponse } from 'next/server';
 
 interface LoginRequest {
@@ -18,6 +18,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 
   try {
+    const supabase = getSupabase();
     const { data: user, error: userError } = await supabase
       .from('login_page_1777496547820_users')
       .select('id, email, username, password_hash')
