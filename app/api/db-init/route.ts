@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { getSupabase } from '@/lib/supabase';
 
 export async function POST(request: Request): Promise<Response> {
   const initSecret = request.headers.get('x-init-secret');
@@ -20,6 +20,7 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   try {
+    const supabase = getSupabase();
     const { error } = await supabase.rpc('exec_sql', { sql: initSql });
     if (error) {
       return new Response(
