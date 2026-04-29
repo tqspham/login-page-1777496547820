@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS login_page_1777496547820_users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email VARCHAR(254) NOT NULL UNIQUE,
+  username VARCHAR(254) NOT NULL UNIQUE,
+  password_hash VARCHAR(64) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_users_email ON login_page_1777496547820_users(email);
+CREATE INDEX IF NOT EXISTS idx_users_username ON login_page_1777496547820_users(username);
